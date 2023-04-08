@@ -20,9 +20,9 @@ const Home: NextPage = () => {
           <h1 className="text-5xl font-extrabold tracking-tight text-white sm:text-[5rem]">
             Welcome to <span className="text-[hsl(280,100%,70%)]">Shelfie</span>
           </h1>
-          <a href="/scanner" className="inline-flex items-center space-x-2 bg-[#e4fde1] text-black font-bold py-2 px-4 rounded-lg transition-colors duration-300 shadow-md hover:bg-[#4caf50] hover:text-white hover:shadow-lg">            
+          <Link href="/scanner" className="inline-flex items-center space-x-2 bg-[#e4fde1] text-black font-bold py-2 px-4 rounded-lg transition-colors duration-300 shadow-md hover:bg-[#4caf50] hover:text-white hover:shadow-lg">            
             <span>Get Started &rarr;</span>
-          </a>
+          </Link>
 
         </div>
       </main>

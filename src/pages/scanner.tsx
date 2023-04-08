@@ -17,11 +17,8 @@ const Scanner: NextPage = () => {
       <main className="flex min-h-screen flex-col items-center justify-center bg-gradient-to-b from-[#2e026d] to-[#15162c]">
         <div className="container flex flex-col items-center justify-center gap-12 px-4 py-16 ">
           <h1 className="text-5xl font-extrabold tracking-tight text-white sm:text-[5rem]">
-            Welcome to <span className="text-[hsl(280,100%,70%)]">Shelfie</span>
+            Scan yo food <span className="text-[hsl(280,100%,70%)]">boi</span>
           </h1>
-          <a href="/scanner" className="flex items-center space-x-2 bg-[#15162c] text-white font-bold py-2 px-4 rounded-lg hover:bg-[hsl(280,100%,70%)]">
-            <span>Get Started &rarr;</span>
-          </a>
         </div>
       </main>
     </>
