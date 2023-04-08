@@ -1,11 +1,13 @@
 import { type NextPage } from "next";
 import Head from "next/head";
-import Link from "next/link";
-import { signIn, signOut, useSession } from "next-auth/react";
+import InputInfo from "../components/inputInfo";
 
 import { api } from "~/utils/api";
+import axios from 'axios';
 
-const Home: NextPage = () => {
+const apiKey = process.env.NEXT_PUBLIC_OPENAI_API_KEY;
+
+const Scanner: NextPage = () => {
   const hello = api.example.hello.useQuery({ text: "from tRPC" });
 
   return (
@@ -17,8 +19,9 @@ const Home: NextPage = () => {
       </Head>
       <main className="flex min-h-screen flex-col items-center justify-center bg-gradient-to-b from-[#2e026d] to-[#15162c]">
         <div className="container flex flex-col items-center justify-center gap-12 px-4 py-16 ">
-          <h1 className="text-5xl font-extrabold tracking-tight text-white sm:text-[5rem]">
-            Welcome to <span className="text-[hsl(280,100%,70%)]">Shelfie</span>
+          <h1 className="text-5xl font-extrabold tracking-tight text-white sm:text-[5rem] text-center">
+            Shelfie, your personal smart fridge assistant.
+            <InputInfo></InputInfo>
           </h1>
         </div>
       </main>
@@ -26,7 +29,28 @@ const Home: NextPage = () => {
   );
 };
 
-export default Home;
+export default Scanner;
+
+// export async function fetchResponse() {
+//   try {
+//     const response = await axios.post(
+//       "https://api.openai.com/v1/engines/davinci/jobs",
+//       {
+//         prompt: "Given the following description about the user: " + searchprompt + ", provide a list of coffee chat or conversation questions that the user can ask the person. These should be in list format, and between every question, include a <br/>.",
+//         max_tokens: 100,
+//       },
+//       {
+//         headers: {
+//           'Content-Type': 'application/json',
+//           'Authorization': `Bearer ${apiKey}`
+//         }
+//       }
+//     );
+//     return response.data.choices[0].text;
+//   } catch (error) {
+//     console.error(error);
+//   }
+// }
 
 // const AuthShowcase: React.FC = () => {
 //   const { data: sessionData } = useSession();
