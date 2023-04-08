@@ -17,10 +17,10 @@ Shelfie employs state-of-the-art image recognition techniques to accurately reco
 - [Numpy](https://numpy.org)
 - Love, passion, and a whole lot of trial and error!
 
-## Learn More
-
-Coming soon!
-
 ## Future Development
 
 We plan to employ higher-definition, more efficient image-processing techniques to more accurately read and analyze the barcode or product. Integrating better AI models, such as GPT-4 and Hugging Face models, is also on the horizon. With AI, we also want to be able to suggest healthier alternatives to some of the products that the user has in their refrigerator.
+
+## Learn More
+
+Coming soon!
