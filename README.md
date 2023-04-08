@@ -1,10 +1,12 @@
 # Shelfie
 
-This is a Shelfie, the next generation of smart fridges.
+This is Shelfie, the next generation of smart fridge software.
 
 ## What does this do?
 
 Shelfie employs state-of-the-art image recognition techniques to accurately recognize produce and products that have an expiration date. A reminder system fueled by CockroachDB reminds the user if a product is about to spoil or expire. Artificial intelligence suggests recipes that the user may be able to make with the ingredients in the fridge based on their dietary preferences and needs.
+
+## How we built Shelfie
 
 - [Next.js](https://nextjs.org)
 - [NextAuth.js](https://next-auth.js.org)
@@ -23,4 +25,4 @@ We plan to employ higher-definition, more efficient image-processing techniques 
 
 ## Learn More
 
-Coming soon!
+Coming soon ♥!
