@@ -25,8 +25,10 @@
     "@trpc/react-query": "^10.18.0",
     "@trpc/server": "^10.18.0",
     "cjs": "^0.0.11",
+    "install": "^0.13.0",
     "next": "^13.3.0",
     "next-auth": "4.20.1",
+    "npm": "^9.6.4",
     "openai": "^3.2.1",
     "quagga": "^0.12.1",
     "react": "18.2.0",
@@ -34,6 +36,7 @@
     "react-webcam": "^7.0.1",
     "socket.io-client": "^4.6.1",
     "superjson": "1.12.2",
+    "tfjs": "^0.6.0",
     "zod": "^3.21.4"
   },
   "devDependencies": {

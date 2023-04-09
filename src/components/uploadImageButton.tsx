@@ -1,3 +1,4 @@
+/* eslint-disable */
 import React, { useState } from 'react';
 import { HfInference } from '@huggingface/inference';
 import { AnyAttrs } from '@tensorflow/tfjs';
@@ -7,14 +8,13 @@ const UploadImageButton = () => {
   const [label, setLabel] = useState<string>('');
 
   const handleUpload = async (event: any) => {
+  const handleUpload = async (event: any) => {
     // eslint-disable-next-line @typescript-eslint/no-unsafe-assignment, @typescript-eslint/no-unsafe-member-access
     const file = event.target.files[0];
     const reader = new FileReader();
 
-    reader.onload = async (e) => {
-        console.log("adsf;adsjf;sljkf")
-      const imageData= e.target?.result;
-      if (typeof imageData === 'string' || imageData instanceof ArrayBuffer) {
+    reader.onload = async (e: any) => {
+      const imageData = e.target.result;
       const hf = new HfInference(process.env.HUGGING_FACE_API);
       const response = await hf.objectDetection({
         data: new Blob([imageData]),

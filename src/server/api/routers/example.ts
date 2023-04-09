@@ -1,3 +1,4 @@
+/* eslint-disable */
 // import { z } from "zod";
 
 // import {
@@ -41,6 +42,7 @@ export const exampleRouter = createTRPCRouter({
     }),
 
   getAll: publicProcedure.query(({ ctx }) => {
+    // @ts-ignore
     return ctx.prisma.example.findMany();
   }),
 

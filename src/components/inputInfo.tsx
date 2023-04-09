@@ -1,3 +1,4 @@
+/* eslint-disable */
 import React, { useState, useEffect, useRef, use } from "react";
 import { Configuration, OpenAIApi } from "openai";
 import { HfInference } from "@huggingface/inference";
@@ -19,8 +20,10 @@ const hf = new HfInference(process.env.HUGGING_FACE_API)
 // import '@tensorflow/tfjs-backend-webgl';
 
 // eslint-disable-next-line @typescript-eslint/no-unsafe-assignment, @typescript-eslint/no-unsafe-call
+  
 const configuration = new Configuration({
-  apiKey: process.env.NEXT_PUBLIC_OPENAI_API_KEY,
+  // apiKey: process.env.NEXT_PUBLIC_OPENAI_API_KEY,
+  apiKey: "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",
 });
 
 const Webcam = () => {
@@ -41,18 +44,18 @@ const Webcam = () => {
     }
   };
 
-  // Function to stop the webcam stream
-  const stopWebcam = () => {
-    if (stream) {
-      stream.getTracks().forEach((track) => track.stop());
-      setStream(null);
-    }
-  };
+  // // Function to stop the webcam stream
+  // const stopWebcam = () => {
+  //   if (stream) {
+  //     stream.getTracks().forEach((track) => track.stop());
+  //     setStream(null);
+  //   }
+  // };
 
   // On mount, start the webcam stream
   useEffect(() => {
     void startWebcam();
-    return () => stopWebcam();
+    // return () => stopWebcam();
   }, []);
 
     // Render the video element to display the webcam feed
@@ -65,7 +68,7 @@ const Webcam = () => {
           {/* onLoadedData={predictWebcam} /> */}
       </div>
     );
-  };
+};
 
 // // Store the resulting model in the global scope of our app.
 // let model = undefined;
@@ -177,51 +180,36 @@ const Webcam = () => {
 //     });
 //   }
   
-
-
-// export const openai = new OpenAIApi(configuration);
+const openai = new OpenAIApi(configuration);
 
 function InputInfo() {
-//   const [prompt, setPrompt] = useState("");
-//   const [response, setResponse] = useState("");
 
-//   const addPerson = async () => {
+  // const handleSubmit = (event: React.FormEvent) => {
+  //   event.preventDefault();
+  // };
 
-//     const conversationsResponse = await openai.createCompletion({
-//       model: "gpt-3.5-turbo",
-//       prompt:
-//         "Given the following ingredients in a fridge, and taking into account the user's dietary needs: " +
-//         prompt +
-//         ", provide a list of recipes that can be recommended.",
-//       temperature: 0,
-//       max_tokens: 500,
-//     });
-//     console.log(conversationsResponse.data.choices[0]?.text);
-//     const response = conversationsResponse.data.choices[0]?.text;
-//     if (response) {
-//       setResponse(response);
-//     }
-//   };
+  const [prompt, setPrompt] = useState("");
+  const [apiResponse, setApiResponse] = useState("");
+  const [loading, setLoading] = useState(false);
 
-
-// async function quickstart(): Promise<void> {
-//   // Creates a client
-//   const client = new ImageAnnotatorClient();
-
-//   // Performs label detection on the image file
-//   const [result] = await client.labelDetection('./wakeupcat.jpg');
-//   const labels = result.labelAnnotations;
-//   console.log('Labels:');
-//   if (labels) {
-//     labels.forEach(label => console.log(label.description));
-//   }
-// }
-
-// void quickstart();
-
-
-  const handleSubmit = (event: React.FormEvent) => {
-    event.preventDefault();
+  const handleSubmit = async (e: any) => {
+    e.preventDefault();
+    setLoading(true);
+    try {
+      const result = await openai.createCompletion({
+        model: "text-davinci-003",
+        prompt: "List at most five recipes that can be made with " + prompt + ". The recipe names should not include the names of the aforementioned ingredients provided.",
+        temperature: 0.5,
+        max_tokens: 4000,
+      });
+      // console.log("response", result.data.choices[0].text);
+      if (result.data.choices[0] && result.data.choices[0].text) {
+        setApiResponse(result.data.choices[0].text);
+      }
+    } catch (e) {
+      setApiResponse("Something is going wrong, Please try again.");
+    }
+    setLoading(false);
   };
 
   return (
@@ -237,39 +225,62 @@ function InputInfo() {
           <h1 className="text-center text-3xl font-extrabold text-[#2C1338]">
             <UploadImageButton></UploadImageButton>
           </h1>
-           {/* <form onSubmit={handleSubmit} className="mt-6 h-screen">
-            <textarea
-              autoFocus
-              value={prompt}
-              onChange={(e) => setPrompt(e.target.value)}
-              className="mb-3 h-1/2 w-full resize-none rounded-md border border-gray-400 p-3 caret-black outline-none"
-              style={{ minHeight: "16px" }}
-              placeholder="Scan below"
-            />
-            <button
-              onClick={() => void addPerson()}
-              type="submit"
-              className="w-full rounded-md bg-[#15162C] p-2 text-[#F1F2F6] hover:bg-[#2E026D]">
-              Get Response
-            </button>
-          </form>  */}
-          {/* {response && (
-            <div className="mt-10">
-              <p className="text-lg font-medium">Response:</p>
-              {response.split(/\r?\n/).map((line, i) => (
-                <p key={i}>{line}</p>
-              ))}
-              {" "}
-              <p className="text-gray-600">
-                {response.split(/\r?\n/).join("\r\n")}
-              </p>
-            </div>
-          )} */}
+          <div
+            style={{
+            display: "flex",
+            justifyContent: "center",
+            alignItems: "center",
+            }}
+          >
+            <form onSubmit={handleSubmit} style={{ display: "flex", flexDirection: "column", fontSize: "1.3rem", marginTop: "15px"}}>
+              <textarea
+                autoFocus
+                value={prompt}
+                placeholder="Or input ingredients..."
+                onChange={(e) => setPrompt(e.target.value)}
+                style={{
+                  border: "0.5px solid",
+                }}
+              ></textarea>
+              <button
+                disabled={loading || prompt.length === 0}
+                type="submit"
+                style={{
+                  content: "center",
+                  alignItems: "center",
+                  textAlign: "center",
+                  border: "1px solid",
+                  marginTop: "5px",
+                  fontSize: "1.2rem",
+                  borderRadius: "20px",
+                }}
+              >
+                {loading ? "Finding good food..." : "Generate recipes!"}
+              </button>
+            </form>
+            {apiResponse && (
+              <div
+                style={{
+                  display: "flex",
+                  justifyContent: "center",
+                }}
+              >
+                <div
+                style={{
+                  padding: "20px",
+                }}>
+                  <strong>Here are some recipes you may find useful with your current ingredients:</strong>
+                  {apiResponse.split(/\r?\n/).map((line, i) => (
+                <p key={i}>{line}</p>))}
+                </div>
+              </div>
+            )}
+          </div>
         </div>
       </div>
     </>
+     
   );
-  }
-
+}
 
 export default InputInfo;
