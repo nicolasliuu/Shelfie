@@ -1,29 +1,12 @@
 /* eslint-disable */
 import React, { useState, useEffect, useRef, use } from "react";
 import { Configuration, OpenAIApi } from "openai";
-import { HfInference } from "@huggingface/inference";
 import UploadImageButton from "./uploadImageButton";
 
-const hf = new HfInference(process.env.HUGGING_FACE_API)
-
-  // await hf.objectDetection({
-  //   data: readFileSync('test/cats.png'),
-  //   model: 'facebook/detr-resnet-50'
-  // })
-
-// import * as tf from '@tensorflow/tfjs';
-// import * as cocoSsd from '@tensorflow-models/coco-ssd';
-// import '@tensorflow/tfjs-backend-webgl';
-
-// import '@tensorflow/tfjs-backend-cp@tensorflow-models/coco-ssdu';
-// import '@tensorflow/tfjs-backend-webgl';
-
 // eslint-disable-next-line @typescript-eslint/no-unsafe-assignment, @typescript-eslint/no-unsafe-call
-  
-const configuration = new Configuration({
-  // apiKey: process.env.NEXT_PUBLIC_OPENAI_API_KEY,
-  apiKey: "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",
-});
+// type InputProps = {
+//   img_prompt: string;
+// };
 
 const Webcam = () => {
   // Declare state variables
@@ -68,212 +51,24 @@ const Webcam = () => {
       </div>
     );
 };
-
-// // Store the resulting model in the global scope of our app.
-// let model = undefined;
-
-// // Before we can use COCO-SSD class we must wait for it to finish
-// // loading. Machine Learning models can be large and take a moment 
-// // to get everything needed to run.
-// // Note: cocoSsd is an external object loaded from our index.html
-// // script tag import so ignore any warning in Glitch.
-// cocoSsd.load().then(function (loadedModel) {
-//   model = loadedModel;
-// });
-
-//   const children = []; // type div type p
-
-//   function predictWebcam() {
-//     // Now let's start classifying a frame in the stream.
-//     tf.browser.fromPixels(videoRef).then(function (pixels) {
-//       model.detect(pixels).then(function (predictions) {
-//         // Remove any highlighting we did previous frame.
-//         for (let i = 0; i < children.length; i++) {
-//           liveView.removeChild(children[i]);
-//         }
-//         // Now lets loop through predictions and draw them to the live view if
-//         // they have a high confidence score.
-//         for (let n = 0; n < predictions.length; n++) {
-//           // If we are over 66% sure we are sure we classified it right, draw it!
-//           if (predictions[n].score > 0.66) {
-//             const p = document.createElement('p');
-//             p.innerText = predictions[n].class + ' - with '
-//                 + Math.round(parseFloat(predictions[n].score) * 100)
-//                 + '% confidence.';
-//             p.style = 'margin-left: ' + predictions[n].bbox[0] + 'px; margin-top: '
-//                 + (predictions[n].bbox[1] - 10) + 'px; width: '
-//                 + (predictions[n].bbox[2] - 10) + 'px; top: 0; left: 0;';
-  
-//             const highlighter = document.createElement('div');
-//             highlighter.setAttribute('class', 'highlighter');
-//             highlighter.style = 'left: ' + predictions[n].bbox[0] + 'px; top: '
-//                 + predictions[n].bbox[1] + 'px; width: '
-//                 + predictions[n].bbox[2] + 'px; height: '
-//                 + predictions[n].bbox[3] + 'px;';
-  
-//             liveView.appendChild(highlighter);
-//             liveView.appendChild(p);
-//           }
-//         }
-  
-//         // Call this function again to keep predicting when the browser is ready.
-//         window.requestAnimationFrame(predictWebcam);
-//       });
-//     });
-//   }
-  
   
 
-
-// const demosSection: HTMLElement = document.getElementById('demos')!;
-
-// let model: cocoSsd.ObjectDetection | undefined;
-
-// // Before we can use COCO-SSD class we must wait for it to finish
-// // loading. Machine Learning models can be large and take a moment to
-// // get everything needed to run.
-// cocoSsd.load().then((loadedModel: cocoSsd.ObjectDetection) => {
-//   model = loadedModel;
-//   // Show demo section now model is ready to use.
-//   demosSection.classList.remove('invisible');
-// });
-
-// const video: HTMLVideoElement = document.getElementById('webcam') as HTMLVideoElement;
-// const liveView: HTMLDivElement = document.getElementById('liveView') as HTMLDivElement;
-
-// // Check if webcam access is supported.
-// function hasGetUserMedia(): boolean {
-//   return !!(navigator.mediaDevices && navigator.mediaDevices.getUserMedia);
-// }
-
-// let children: HTMLDivElement[] = [];
-
-// // If webcam supported, add event listener to button for when user
-// // wants to activate it.
-// // if (hasGetUserMedia()) {
-// //   const enableWebcamButton: HTMLButtonElement = document.getElementById('webcamButton') as HTMLButtonElement;
-// //   enableWebcamButton.addEventListener('click', enableCam);
-// // } else {
-// //   console.warn('getUserMedia() is not supported by your browser');
-// // }
-
-// // Enable the live webcam view and start classification.
-// function enableCam(event: MouseEvent): void {
-//   if (!model) {
-//     console.log('Wait! Model not loaded yet.');
-//     return;
-//   }
-
-//   // Hide the button.
-//   (event.target as HTMLButtonElement).classList.add('removed');
-
-//   // getUsermedia parameters.
-//   const constraints = {
-//     video: true,
-//   };
-
-//     // Activate the webcam stream.
-//     navigator.mediaDevices.getUserMedia(constraints).then((stream: MediaStream) => {
-//       video.srcObject = stream;
-//       video.addEventListener('loadeddata', predictWebcam);
-//     });
-//   }
-  
-const openai = new OpenAIApi(configuration);
 
 function InputInfo() {
 
   // const handleSubmit = (event: React.FormEvent) => {
   //   event.preventDefault();
-  // };
-
-  const [prompt, setPrompt] = useState("");
-  const [apiResponse, setApiResponse] = useState("");
-  const [loading, setLoading] = useState(false);
-
-  const handleSubmit = async (e: any) => {
-    e.preventDefault();
-    setLoading(true);
-    try {
-      const result = await openai.createCompletion({
-        model: "text-davinci-003",
-        prompt: "List at most five recipes that can be made with " + prompt + ". The recipe names should not include the names of the aforementioned ingredients provided.",
-        temperature: 0.5,
-        max_tokens: 4000,
-      });
-      // console.log("response", result.data.choices[0].text);
-      if (result.data.choices[0] && result.data.choices[0].text) {
-        setApiResponse(result.data.choices[0].text);
-      }
-    } catch (e) {
-      setApiResponse("Something is going wrong, Please try again.");
-    }
-    setLoading(false);
-  };
+  // }
 
   return (
     <>
-      <div className="flex h-screen w-full justify-center bg-[#F1F2F6]">
+      <div className="flex w-full justify-center bg-[#F1F2F6]">
         <div className="h-4/5 w-4/5 max-w-4xl rounded-lg bg-[#F1F2F6] p-3">
           <h1 className="text-center text-3xl font-extrabold text-[#2C1338]">
             Scan your ingredients below:
           </h1>
           <div>
             <Webcam></Webcam>
-          </div>
-          <h1 className="text-center text-3xl font-extrabold text-[#2C1338]">
-            <UploadImageButton></UploadImageButton>
-          </h1>
-          <div
-            style={{
-            display: "flex",
-            justifyContent: "center",
-            alignItems: "center",
-            }}
-          >
-            <form onSubmit={handleSubmit} style={{ display: "flex", flexDirection: "column", fontSize: "1.3rem", marginTop: "15px"}}>
-              <textarea
-                autoFocus
-                value={prompt}
-                placeholder="Or input ingredients..."
-                onChange={(e) => setPrompt(e.target.value)}
-                style={{
-                  border: "0.5px solid",
-                }}
-              ></textarea>
-              <button
-                disabled={loading || prompt.length === 0}
-                type="submit"
-                style={{
-                  content: "center",
-                  alignItems: "center",
-                  textAlign: "center",
-                  border: "1px solid",
-                  marginTop: "5px",
-                  fontSize: "1.2rem",
-                  borderRadius: "20px",
-                }}
-              >
-                {loading ? "Finding good food..." : "Generate recipes!"}
-              </button>
-            </form>
-            {apiResponse && (
-              <div
-                style={{
-                  display: "flex",
-                  justifyContent: "center",
-                }}
-              >
-                <div
-                style={{
-                  padding: "20px",
-                }}>
-                  <strong>Here are some recipes you may find useful with your current ingredients:</strong>
-                  {apiResponse.split(/\r?\n/).map((line, i) => (
-                <p key={i}>{line}</p>))}
-                </div>
-              </div>
-            )}
           </div>
         </div>
       </div>

@@ -4,9 +4,11 @@ import Head from "next/head";
 import InputInfo from "../components/inputInfo";
 import * as tf from '@tensorflow/tfjs';
 import * as cocoSsd from '@tensorflow-models/coco-ssd';
+import Gpt from "../components/gpt";
 
 import { api } from "~/utils/api";
 import axios from 'axios';
+import UploadImageButton from "~/components/uploadImageButton";
 
 const apiKey = process.env.NEXT_PUBLIC_OPENAI_API_KEY;
 
@@ -26,6 +28,7 @@ const Scanner: NextPage = () => {
             I&apos;m <span className="text-[hsl(280,100%,70%)]">Shelfie</span>, your personal <br></br> smart fridge assistant.
           </h1>
           <InputInfo></InputInfo>
+          <UploadImageButton></UploadImageButton>
         </div>
       </main>
 
