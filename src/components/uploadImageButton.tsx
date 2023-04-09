@@ -14,7 +14,6 @@ const UploadImageButton = () => {
   const [label, setLabel] = useState('');
 
   const handleUpload = async (event: any) => {
-  const handleUpload = async (event: any) => {
     // eslint-disable-next-line @typescript-eslint/no-unsafe-assignment, @typescript-eslint/no-unsafe-member-access
     const file = event.target.files[0];
     const reader = new FileReader();
