@@ -1,6 +1,8 @@
 import { type NextPage } from "next";
 import Head from "next/head";
 import InputInfo from "../components/inputInfo";
+import * as tf from '@tensorflow/tfjs';
+import * as cocoSsd from '@tensorflow-models/coco-ssd';
 
 import { api } from "~/utils/api";
 import axios from 'axios';
@@ -18,13 +20,14 @@ const Scanner: NextPage = () => {
         <link rel="icon" href="/red rider marshie.png"/>
       </Head>
       <main className="flex min-h-screen flex-col items-center justify-center bg-gradient-to-b from-[#2e026d] to-[#15162c]">
-        <div className="container flex flex-col items-center justify-center gap-12 px-4 py-16 ">
-          <h1 className="text-5xl font-extrabold tracking-tight text-white sm:text-[5rem] text-center">
-            Shelfie, your personal smart fridge assistant.
-            <InputInfo></InputInfo>
+        <div className="container flex flex-col items-center justify-center px-4 py-3 ">
+          <h1 className="text-5xl font-extrabold text-white sm:text-[5rem] text-center mb-5">
+            I&apos;m <span className="text-[hsl(280,100%,70%)]">Shelfie</span>, your personal <br></br> smart fridge assistant.
           </h1>
+          <InputInfo></InputInfo>
         </div>
       </main>
+
     </>
   );
 };
