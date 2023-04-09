@@ -1,6 +1,7 @@
 import React, { useState, useEffect, useRef, use } from "react";
 import { Configuration, OpenAIApi } from "openai";
 import { HfInference } from "@huggingface/inference";
+// import { ImageAnnotatorClient } from '@google-cloud/vision';
 import UploadImageButton from "./uploadImageButton";
 
 const hf = new HfInference(process.env.HUGGING_FACE_API)
@@ -201,6 +202,23 @@ function InputInfo() {
 //       setResponse(response);
 //     }
 //   };
+
+
+// async function quickstart(): Promise<void> {
+//   // Creates a client
+//   const client = new ImageAnnotatorClient();
+
+//   // Performs label detection on the image file
+//   const [result] = await client.labelDetection('./wakeupcat.jpg');
+//   const labels = result.labelAnnotations;
+//   console.log('Labels:');
+//   if (labels) {
+//     labels.forEach(label => console.log(label.description));
+//   }
+// }
+
+// void quickstart();
+
 
   const handleSubmit = (event: React.FormEvent) => {
     event.preventDefault();

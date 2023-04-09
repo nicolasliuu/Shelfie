@@ -28,6 +28,6 @@
     "**/*.tsx",
     "**/*.cjs",
     "**/*.mjs"
-  ],
+, "src/components/cloud.js"  ],
   "exclude": ["node_modules"]
 }
