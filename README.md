@@ -1,28 +1,26 @@
-# Shelfie
+# Shelfie 
 
-This is a Shelfie, the next generation of smart fridges.
+This is Shelfie, the next generation of smart fridge software.
 
 ## What does this do?
 
-We try to keep this project as simple as possible, so you can start with just the scaffolding we set up for you, and add additional things later when they become necessary.
-
-If you are not familiar with the different technologies used in this project, please refer to the respective docs. If you still are in the wind, please join our [Discord](https://t3.gg/discord) and ask for help.
+Shelfie employs state-of-the-art image recognition techniques to accurately recognize produce and products that have an expiration date. A reminder system fueled by CockroachDB reminds the user if a product is about to spoil or expire. Artificial intelligence suggests recipes that the user may be able to make with the ingredients in the fridge based on their dietary preferences and needs.
 
 - [Next.js](https://nextjs.org)
 - [NextAuth.js](https://next-auth.js.org)
 - [Prisma](https://prisma.io)
 - [Tailwind CSS](https://tailwindcss.com)
-- [tRPC](https://trpc.io)
-
-## Learn More
-
-To learn more about the [T3 Stack](https://create.t3.gg/), take a look at the following resources:
-
-- [Documentation](https://create.t3.gg/)
-- [Learn the T3 Stack](https://create.t3.gg/en/faq#what-learning-resources-are-currently-available) — Check out these awesome tutorials
-
-You can check out the [create-t3-app GitHub repository](https://github.com/t3-oss/create-t3-app) — your feedback and contributions are welcome!
+- [OpenAI](https://openai.com)
+- [OpenCV](https://opencv.org)
+- [CockroachDB](https://cockroachlabs.com)
+- [Tensorflow](https://tensorflow.org)
+- [Numpy](https://numpy.org)
+- Love, passion, and a whole lot of trial and error!
 
 ## Future Development
 
-Follow our deployment guides for [Vercel](https://create.t3.gg/en/deployment/vercel), [Netlify](https://create.t3.gg/en/deployment/netlify) and [Docker](https://create.t3.gg/en/deployment/docker) for more information.
+We plan to employ higher-definition, more efficient image-processing techniques to more accurately read and analyze the barcode or product. Integrating better AI models, such as GPT-4 and Hugging Face models, is also on the horizon. With AI, we also want to be able to suggest healthier alternatives to some of the products that the user has in their refrigerator.
+
+## Learn More
+
+Coming soon ♥!

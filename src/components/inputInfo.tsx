@@ -5,47 +5,49 @@ const configuration = new Configuration({
   apiKey: process.env.NEXT_PUBLIC_OPENAI_API_KEY,
 });
 
-const Webcam = () => {
-  // Declare state variables
-  const [stream, setStream] = useState<MediaStream | null>(null);
-  const videoRef = useRef<HTMLVideoElement>(null);
+// const Webcam = () => {
+//   // Declare state variables
+//   const [stream, setStream] = useState<MediaStream | null>(null);
+//   const videoRef = useRef<HTMLVideoElement>(null);
 
-  // Function to start the webcam stream
-  const startWebcam = async () => {
-    try {
-      const stream = await navigator.mediaDevices.getUserMedia({ video: true });
-      console.log(stream.getVideoTracks(), "1111111");
+//   // Function to start the webcam stream
+//   const startWebcam = async () => {
+//     try {
+//       const stream = await navigator.mediaDevices.getUserMedia({ video: true });
+//       console.log(stream.getVideoTracks(), "1111111");
 
-      videoRef.current.srcObject = stream;
-    } catch (err) {
-      console.error("Failed to start webcam: ", err);
-    }
-  };
+//       videoRef.current.srcObject = stream;
+//     } catch (err) {
+//       console.error("Failed to start webcam: ", err);
+//     }
+//   };
 
-  // Function to stop the webcam stream
-  const stopWebcam = () => {
-    if (stream) {
-      stream.getTracks().forEach((track) => track.stop());
-      setStream(null);
-    }
-  };
+//   // Function to stop the webcam stream
+//   const stopWebcam = () => {
+//     if (stream) {
+//       stream.getTracks().forEach((track) => track.stop());
+//       setStream(null);
+//     }
+//   };
 
-  // On mount, start the webcam stream
-  useEffect(() => {
-    startWebcam();
-    return () => stopWebcam();
-  }, []);
+//   // On mount, start the webcam stream
+//   useEffect(() => {
+//     startWebcam();
+//     return () => stopWebcam();
+//   }, []);
 
-  // Render the video element to display the webcam feed
-  return (
-    <div className="flex w-full items-center justify-center border-2 border-gray-400">
-      <video ref={videoRef} autoPlay playsInline muted />
-    </div>
-  );
-};
+//   // Render the video element to display the webcam feed
+//   return (
+//     <div className="flex w-full items-center justify-center border-2 border-gray-400">
+//       <video ref={videoRef} autoPlay playsInline muted />
+//     </div>
+//   );
+// };
 
 
 export const openai = new OpenAIApi(configuration);
+const prompt = "tomatoes eggs rice";
+console.log(prompt);
 
 function InputInfo() {
   const [prompt, setPrompt] = useState("");
@@ -80,9 +82,9 @@ function InputInfo() {
           <h1 className="text-center text-3xl font-extrabold text-[#2C1338]">
             Scan your ingredients below:
           </h1>
-          <div>
+          {/* <div>
             <Webcam />
-          </div>
+          </div> */}
           {/* <form onSubmit={handleSubmit} className="mt-6 h-screen">
             <textarea
               autoFocus
