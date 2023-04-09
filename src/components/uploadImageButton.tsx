@@ -20,7 +20,7 @@ const UploadImageButton = () => {
     
     reader.onload = async (e: any) => {
       const imageData = e.target.result;
-      const API_KEY = "AIzaSyApuTAyHiGE6HaTaVh8Vctvd38MtzUCRcQ";
+      const API_KEY = process.env.NEXT_PUBLIC_GOOGLE_API_KEY;
       const VISION_API_ENDPOINT = "https://vision.googleapis.com/v1/images:annotate";
       
       const response = await fetch(`${VISION_API_ENDPOINT}?key=${API_KEY}`, {

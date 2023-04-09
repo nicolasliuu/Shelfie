@@ -3,7 +3,7 @@ import React, { useState, useMemo, useEffect } from 'react';
 
 
 const configuration = new Configuration({
-    apiKey: "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",
+    apiKey: process.env.NEXT_PUBLIC_OPENAI_API_KEY,
   });
 
 
