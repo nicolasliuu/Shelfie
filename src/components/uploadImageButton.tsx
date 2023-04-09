@@ -1,3 +1,4 @@
+/* eslint-disable */
 import React, { useState } from 'react';
 import { HfInference } from '@huggingface/inference';
 
@@ -5,11 +6,11 @@ const UploadImageButton = () => {
   const [image, setImage] = useState(null);
   const [label, setLabel] = useState('');
 
-  const handleUpload = async (event) => {
+  const handleUpload = async (event: any) => {
     const file = event.target.files[0];
     const reader = new FileReader();
 
-    reader.onload = async (e) => {
+    reader.onload = async (e: any) => {
       const imageData = e.target.result;
       const hf = new HfInference(process.env.HUGGING_FACE_API);
       const response = await hf.objectDetection({

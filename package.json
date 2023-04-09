@@ -10,6 +10,7 @@
     "start": "next start"
   },
   "dependencies": {
+    "@google-cloud/vision": "^3.1.2",
     "@huggingface/hub": "^0.5.0",
     "@huggingface/inference": "^1.7.1",
     "@next-auth/prisma-adapter": "^1.0.5",
@@ -24,8 +25,10 @@
     "@trpc/react-query": "^10.18.0",
     "@trpc/server": "^10.18.0",
     "cjs": "^0.0.11",
+    "install": "^0.13.0",
     "next": "^13.3.0",
     "next-auth": "4.20.1",
+    "npm": "^9.6.4",
     "openai": "^3.2.1",
     "quagga": "^0.12.1",
     "react": "18.2.0",
