@@ -1,5 +1,14 @@
 import React, { useState, useEffect, useRef, use } from "react";
 import { Configuration, OpenAIApi } from "openai";
+import { HfInference } from "@huggingface/inference";
+import UploadImageButton from "./uploadImageButton";
+
+const hf = new HfInference(process.env.HUGGING_FACE_API)
+
+  // await hf.objectDetection({
+  //   data: readFileSync('test/cats.png'),
+  //   model: 'facebook/detr-resnet-50'
+  // })
 
 // import * as tf from '@tensorflow/tfjs';
 // import * as cocoSsd from '@tensorflow-models/coco-ssd';
@@ -207,6 +216,9 @@ function InputInfo() {
           <div>
             <Webcam></Webcam>
           </div>
+          <h1 className="text-center text-3xl font-extrabold text-[#2C1338]">
+            <UploadImageButton></UploadImageButton>
+          </h1>
            {/* <form onSubmit={handleSubmit} className="mt-6 h-screen">
             <textarea
               autoFocus
